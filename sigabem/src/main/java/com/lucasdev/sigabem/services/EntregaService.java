@@ -72,6 +72,7 @@ public class EntregaService {
 	
 	public void insert(FreteEntregaDTO dto, FreteEntregaResponseDTO response) {
 		Entrega entity = new Entrega();
+		entity.setPeso(dto.getPeso());
 		entity.setCepDestino(dto.getCepDestino());
 		entity.setCepOrigem(dto.getCepOrigem());
 		entity.setNomeDestinatario(dto.getNomeDestinatario());

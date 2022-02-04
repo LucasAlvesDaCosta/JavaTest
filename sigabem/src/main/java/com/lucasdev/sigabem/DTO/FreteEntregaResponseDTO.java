@@ -8,7 +8,6 @@ import com.lucasdev.sigabem.entities.Entrega;
 public class FreteEntregaResponseDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Long id;
 	private String cepOrigem;
 	private String cepDestino;
 	private Double vlTotalFrete;
@@ -18,20 +17,21 @@ public class FreteEntregaResponseDTO implements Serializable {
 		
 	}
 
+	public FreteEntregaResponseDTO(String cepOrigem, String cepDestino, Double vlTotalFrete,
+			LocalDate dataPrevistaEntrega) {
+		super();
+		this.cepOrigem = cepOrigem;
+		this.cepDestino = cepDestino;
+		this.vlTotalFrete = vlTotalFrete;
+		this.dataPrevistaEntrega = dataPrevistaEntrega;
+	}
+
+
 	public FreteEntregaResponseDTO(Entrega entity) {
-		id = entity.getId();
 		cepOrigem = entity.getCepOrigem();
 		cepDestino = entity.getCepDestino();
 		vlTotalFrete = entity.getVlTotalFrete();
 		dataPrevistaEntrega = entity.getDataPrevistaEntrega();
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getCepOrigem() {
