@@ -1,23 +1,25 @@
 package com.lucasdev.sigabem.services;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.lucasdev.sigabem.entities.EnderecoViaCep;
+
 @Service
 public class viaCepService {
 
+	private RestTemplate restTemplate = new RestTemplate();
+
 	public EnderecoViaCep viaCep(String cep) {
-		EnderecoViaCep endereco = new EnderecoViaCep();
-		 endereco.setCep("01001-000");
-		 endereco.setLogradouro("Praça da Sé");
-		 endereco.setBairro("Sé");
-		 endereco.setLocalidade("São Paulo");
-		 endereco.setUf("SP");
-		 endereco.setIbge("3550308");
-		 endereco.setGia("1004");
-		 endereco.setDdd("11");
-		 endereco.setSiafi("7103");
-		
+
+		StringBuilder stringBuilder = new StringBuilder(100);
+		stringBuilder.append("https://viacep.com.br/ws/");
+		stringBuilder.append(cep);
+		stringBuilder.append("/json/");
+
+		String url = stringBuilder.toString();
+		EnderecoViaCep endereco = restTemplate.getForObject(url, EnderecoViaCep.class);
+
 		return endereco;
 	}
 }
