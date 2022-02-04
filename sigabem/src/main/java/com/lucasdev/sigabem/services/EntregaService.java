@@ -3,6 +3,7 @@ package com.lucasdev.sigabem.services;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.lucasdev.sigabem.DTO.FreteEntregaDTO;
@@ -19,26 +20,23 @@ public class EntregaService {
 	
 	@Autowired
 	private viaCepService service;
-	/*
-	 * Considerar regras para calcular o valor do frete:
-	 * 
-	 * CEPs com DDDs iguais tem 50% de desconto no valor do frete e entrega prevista
-	 * de 1 dia #CEPs de estados iguais tem 75% de desconto no valor do frete e
-	 * entrega prevista de 3 dias #CEPs de estados diferentes não deve ser aplicado o
-	 * desconto no valor do frete e entrega prevista de 10 dias O valor do frete é
-	 * cobrado pelo peso da encomenda, o valor para cada KG é R$1,00
-	 */
 	
+	@Value("${value.kg}")// Value defined in application.properties - Default: 1.0 
+	private Double valorKg;
+
 	public FreteEntregaResponseDTO calcularValorFretePrazo(FreteEntregaDTO dto) {
 		
 		FreteEntregaResponseDTO response = new FreteEntregaResponseDTO();
-		Double valorFrete = dto.getPeso() * 1L;
+		
+		Double valorFrete = dto.getPeso() * valorKg;		
 		LocalDate dataPrevEntrega = LocalDate.now();
 		EnderecoViaCep origem = service.viaCep(dto.getCepOrigem());
 		EnderecoViaCep destino = service.viaCep(dto.getCepDestino());
 		
 		if(origem.getDdd().equals(destino.getDdd())) {
-			valorFrete /= 2L;
+			
+			double percentual = 50.0 / 100.0; // 50%
+			valorFrete -= (percentual * valorFrete);
 			dataPrevEntrega = dataPrevEntrega.plusDays(1);
 			
 			response.setVlTotalFrete(valorFrete);
@@ -63,6 +61,7 @@ public class EntregaService {
 			response.setVlTotalFrete(valorFrete);
 		}
 		
+		response.setVlTotalFrete((double) (Math.round(valorFrete*100.0)/100.0));
 		response.setCepOrigem(dto.getCepOrigem());
 		response.setCepDestino(dto.getCepDestino());
 		
