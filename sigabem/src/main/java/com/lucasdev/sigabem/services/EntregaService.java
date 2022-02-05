@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lucasdev.sigabem.DTO.FreteEntregaDTO;
 import com.lucasdev.sigabem.DTO.FreteEntregaResponseDTO;
@@ -56,9 +57,7 @@ public class EntregaService {
 		if(!origem.getUf().equals(destino.getUf())) {
 			
 			dataPrevEntrega = dataPrevEntrega.plusDays(10);
-			
 			response.setDataPrevistaEntrega(dataPrevEntrega);
-			response.setVlTotalFrete(valorFrete);
 		}
 		
 		response.setVlTotalFrete((double) (Math.round(valorFrete*100.0)/100.0));
@@ -69,6 +68,7 @@ public class EntregaService {
 		return response;
 	}
 	
+	@Transactional
 	public void insert(FreteEntregaDTO dto, FreteEntregaResponseDTO response) {
 		Entrega entity = new Entrega();
 		entity.setPeso(dto.getPeso());
