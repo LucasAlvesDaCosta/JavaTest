@@ -20,7 +20,10 @@
    - url: *jdbc:h2:mem:testdb*
    - username: *sa*
    - password: 
-   
+
+# Documentação: 
+``` http://localhost:8080/swagger-ui.html ```
+
 # Especificações:
 
 ### Pré-requisitos
