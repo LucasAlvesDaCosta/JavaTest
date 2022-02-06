@@ -2,19 +2,21 @@
 
 ## Endpoints examples:
 
-* **post:**  *localhost:8080/entregas/frete*
- * body JSON:
-```{
+* **post:**  ``` localhost:8080/entregas/frete ```
+##### body JSON:
+``` 
+{
     "peso" : 80.24,
     "cepOrigem" : "01001000",
     "cepDestino" : "08090284",
      "nomeDestinatario" : "David Guetta"
-} ```
+} 
+```
 
-* **get:**  *localhost:8080/entregas/frete/30.2/01001000/73817000/maria%20joaquina*
+* **get:**  ``` localhost:8080/entregas/frete/30.2/01001000/73817000/maria%20joaquina ```
 
 ## Banco de dados em modo de teste:
- * Disponível em: *localhost:8080/h2-console*
+ * Disponível em:  ``` localhost:8080/h2-console ```
    - url: *jdbc:h2:mem:testdb*
    - username: *sa*
    - password: 
