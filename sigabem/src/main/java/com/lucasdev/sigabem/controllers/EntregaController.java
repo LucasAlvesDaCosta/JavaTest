@@ -23,13 +23,13 @@ public class EntregaController {
 	private EntregaService service;
 
 	@PostMapping
-	public ResponseEntity<FreteEntregaResponseDTO> EntregaResousePost(@RequestBody FreteEntregaDTO dto) {
+	public ResponseEntity<FreteEntregaResponseDTO> EntregaResourcePost(@RequestBody FreteEntregaDTO dto) {
 		FreteEntregaResponseDTO response = service.calcularValorFretePrazo(dto);
 		return ResponseEntity.ok().body(response);
 	}
 
 	@GetMapping(value = "/{peso}/{cepOrigem}/{cepDestino}/{nomeDest}")
-	public ResponseEntity<FreteEntregaResponseDTO> EntregaResouseGet(@PathVariable("peso") Double peso,
+	public ResponseEntity<FreteEntregaResponseDTO> EntregaResourceGet(@PathVariable("peso") Double peso,
 			@PathVariable("cepOrigem") String cepOrigem, @PathVariable("cepDestino") String cepDestino,
 			@PathVariable("nomeDest") String nomeDest) {
 

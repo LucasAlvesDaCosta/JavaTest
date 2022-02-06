@@ -1,0 +1,62 @@
+<div>
+	<h3>Aplicação Spring Boot REST API para calcular valor do frete
+	     e prazo de entrega.</h3>
+	  <h5>Services:</h5>
+	    <ul>
+	     	<li> 
+	     	 <p>Padrão: Regras de negócio, persistência de dados e chamada do service (ViaCep).</p>
+	     	</li>
+	      <li>ViaCep: Integração com API ViaCep e consulta por CEP.</li>
+	    </ul> 
+	   <h5>Perfis do projeto:</h5>
+	     <ul>
+	     	<li>Test: Conectado ao banco de dados H2 disponível em:
+	     		<p style="font-style: italic">/h2-console</p>
+	     		<ul>
+	     			<li>url: <i>jdbc:h2:mem:testdb</i></li>
+	     			<li>username: <i>sa</i></li>
+	     			<li>password: Este campo foi setado como vazio para facilitar os testes.</li>
+	     		</ul>
+	     	</li>
+	     	<li>A tabela estará vazia até que uma requisição Get ou Post válida seja feita.</li>
+	     	<li>Ao final da execução do projeto a base de dados será excluída por default.</li>
+	     </ul>
+	     <br/>
+	     
+	     <ul>
+	     	<li>Dev: Conexão pronta para trabalhar com PostgreSql(drive jdbc).</li>
+	     		<ul>
+	     			<li>Variáveis de ambiente podem ser atribuidas para os campos de conexão.</li>
+	     			<li>Caso estas variáveis não sejam informadas será considerado o default disponivel no application.properties-(dev).</li>
+	     		</ul>
+	     </ul>
+	   <h5>Variável de ambiente: VALOR_KG</h5>
+		   <p>Esta variável poderá ser setada no sistema ou conteiner de execução do projeto
+		   	  permitindo que o valor por Kg das entregas seja alterado, facilitando a alteração desta regra de negócios.</p>
+		   	  <p>Seu valor padrão é 1.0 - (1 R$)</p>
+	   <br/>
+	   <h5>EndPoints:</h5>
+	   	<ul>
+	   		<li>
+	   			<b>@Post:</b> Este endPoint permite que uma requisição seja feita com um corpo no formato JSON.
+	   		</li>
+	   		<li> <b>@Get:</b> Este endPoint permite que uma requisição seja feita na url do método.</li>
+	   		<p></p>
+		    <li>Estes dois métodos http tem o mesmo propósito e o uso dependerá da implementação ou necessidade da interface do usuário.</li>
+	   	</ul>
+	   	<br/>
+	   	<p class="note">Autor: Lucas Alves da Costa, <a target="_blank" href="mailto:lucasalves16.la@gmail.com">lucasalves16.la@gmail.com</a></p>
+	   	 <style>
+            h3{
+                color: #001100;
+                font-weight: bold;
+            }
+            .note{
+                color: #585858;
+                font-size: 8px;
+                font-style: italic;
+                text-align: center;
+            }
+
+        </style>
+</div>
